@@ -1,0 +1,29 @@
+# application-local.yml
+spring:
+  datasource:
+    # TODO: H2 JDBC URL 작성
+    url: jdbc:h2:mem:memberdb
+    # TODO: H2 드라이버 클래스명 작성
+    driver-class-name: org.h2.Driver
+    # TODO: H2 사용자명 작성
+    username: sa
+    # TODO: H2 비밀번호 값 작성
+    password:
+
+  h2:
+    console:
+      # TODO: H2 콘솔 활성화 여부 작성
+      enabled: true
+      # TODO: H2 콘솔 경로 작성
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      # TODO: 로컬 개발용 ddl 옵션 작성
+      ddl-auto: create
+    properties:
+      hibernate:
+        # TODO: SQL 출력 여부 작성
+        show_sql: true
+        # TODO: SQL 포맷팅 여부 작성
+        format_sql: true
