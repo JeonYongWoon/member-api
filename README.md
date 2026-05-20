@@ -7,6 +7,8 @@
 - EC2 Public IP: 52.78.132.180
 - Health Check URL: http://52.78.132.180:8080/actuator/health
 
+![AWS Budget 설정 화면](images/aws-budget.png)
+
 ## 기술 스택
 
 - Java 17
