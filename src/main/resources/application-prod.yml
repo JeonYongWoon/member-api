@@ -1,9 +1,11 @@
 # application-prod.yml
 spring:
+  config:
+    # AWS Parameter Store에서 설정값을 싹 다 가져오라는 마법의 주문!
+    import: "aws-parameterstore:/config/application/"
+
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    # url, username, password는 AWS가 자동으로 채워주므로 생략합니다.
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -16,3 +18,17 @@ spring:
 
 server:
   port: 8080
+
+# --- 과제 필수: Actuator 및 팀 이름 설정 ---
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+  info:
+    env:
+      enabled: true
+
+info:
+  # Parameter Store에 저장한 team-name 값을 Actuator Info에 노출합니다.
+  team-name: ${team-name}

@@ -3,6 +3,11 @@
 spring:
   application:
     name: member-api
+  profiles:
+    active: prod
+  config:
+    import:
+      aws-parameterstore:
 
 server:
   port: 8080
@@ -11,4 +16,5 @@ management:
   endpoints:
     web:
       exposure:
-        include: health
+        include: health, info
+
