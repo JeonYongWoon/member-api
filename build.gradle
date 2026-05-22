@@ -30,8 +30,14 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    // AWS 의존성 최소화 (버전 충돌 방지)
+    // --- AWS 설정 (최신화) ---
+    // 1. AWS SDK 버전 통일을 위한 BOM (S3, SSM 등 모든 AWS 라이브러리 버전을 2.25.11로 강제 동기화)
+    implementation platform('software.amazon.awssdk:bom:2.25.11')
+
+    // 2. AWS Parameter Store 및 S3 SDK
     implementation 'io.awspring.cloud:spring-cloud-aws-starter-parameter-store:3.1.1'
+    implementation 'software.amazon.awssdk:s3'
+    implementation 'software.amazon.awssdk:ssm'
 }
 
 tasks.named('test') {
