@@ -1,12 +1,11 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '4.0.6'
+    id 'org.springframework.boot' version '3.4.2' // 기존에 사용하시던 버전
     id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-description = 'member-api'
 
 java {
     toolchain {
@@ -30,20 +29,10 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testCompileOnly 'org.projectlombok:lombok'
-    testAnnotationProcessor 'org.projectlombok:lombok'
 
-    // --- AWS 설정 ---
-    // AWS SDK 전체 버전을 2.25.11로 강제 고정하여 버전 충돌 방지
-    implementation platform('software.amazon.awssdk:bom:2.25.11')
-
-    // Spring Cloud AWS (파라미터 스토어 및 기본 설정)
-    implementation 'io.awspring.cloud:spring-cloud-aws-starter:3.0.0'
-    implementation 'io.awspring.cloud:spring-cloud-aws-starter-parameter-store:3.0.0'
-
-    // AWS SDK (S3, SSM) - 플랫폼 버전을 따르므로 뒤에 버전을 명시하지 않음
-    implementation 'software.amazon.awssdk:s3'
-    implementation 'software.amazon.awssdk:ssm'
+    // 맨 처음 작동했던 AWS 설정
+    implementation 'io.awspring.cloud:spring-cloud-aws-starter-parameter-store:4.0.0'
+    implementation 'software.amazon.awssdk:s3:2.25.11'
 }
 
 tasks.named('test') {
