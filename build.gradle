@@ -19,26 +19,31 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-h2console'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
     compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'com.mysql:mysql-connector-j'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
-    testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testCompileOnly 'org.projectlombok:lombok'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testAnnotationProcessor 'org.projectlombok:lombok'
-    // 1. AWS Parameter Store
-    implementation 'io.awspring.cloud:spring-cloud-aws-starter-parameter-store:4.0.0'
 
-    // 2. S3와 SSM의 버전을 똑같이 2.25.11로 통일!! (이게 핵심입니다)
-    implementation 'software.amazon.awssdk:s3:2.25.11'
-    implementation 'software.amazon.awssdk:ssm:2.25.11'
+    // --- AWS 설정 ---
+    // AWS SDK 전체 버전을 2.25.11로 강제 고정하여 버전 충돌 방지
+    implementation platform('software.amazon.awssdk:bom:2.25.11')
 
+    // Spring Cloud AWS (파라미터 스토어 및 기본 설정)
+    implementation 'io.awspring.cloud:spring-cloud-aws-starter:3.0.0'
+    implementation 'io.awspring.cloud:spring-cloud-aws-starter-parameter-store:3.0.0'
+
+    // AWS SDK (S3, SSM) - 플랫폼 버전을 따르므로 뒤에 버전을 명시하지 않음
+    implementation 'software.amazon.awssdk:s3'
+    implementation 'software.amazon.awssdk:ssm'
 }
 
 tasks.named('test') {
