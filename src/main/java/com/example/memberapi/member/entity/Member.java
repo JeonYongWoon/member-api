@@ -18,22 +18,27 @@ public class Member {
     // TODO: 회원 MBTI 필드 선언
     private String mbti;
 
+    private String profileImageUrl;
+
     protected Member() {
     }
 
     // TODO: 생성자 작성
-    public Member(String name, Integer age, String mbti) {
+
+    public Member(String name, Integer age, String mbti, String profileImageUrl) {
         this.name = name;
         this.age = age;
         this.mbti = mbti;
+        this.profileImageUrl = profileImageUrl;
     }
+
     // TODO: 정적 생성 메서드 작성 여부 결정
     public static Member of(
             String name,
             Integer age,
             String mbti
     ) {
-        return new Member(name, age, mbti);
+        return new Member(name, age, mbti,null);
     }
     // TODO: getter 메서드 작성
 
@@ -51,5 +56,14 @@ public class Member {
 
     public String getMbti() {
         return mbti;
+    }
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    // TODO: 프로필 이미지 URL 업데이트 메서드 추가
+    public void updateProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
     }
 }
