@@ -32,12 +32,15 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testAnnotationProcessor 'org.projectlombok:lombok'
-    // AWS Parameter Store에서 값을 가져오기 위한 라이브러리
+    // AWS Parameter Store
     implementation 'io.awspring.cloud:spring-cloud-aws-starter-parameter-store:4.0.0'
-    // AWS SDK 버전 꼬임 방지를 위한 BOM (플랫폼)
-    implementation platform('software.amazon.awssdk:bom:2.25.11')
-    // S3 (버전을 지워주면 위 platform이 알아서 맞춰줍니다!)
-    implementation 'software.amazon.awssdk:s3'
+
+    // AWS SDK (모든 뼈대를 2.25.11 버전으로 강제 고정!!!)
+    implementation 'software.amazon.awssdk:s3:2.25.11'
+    implementation 'software.amazon.awssdk:aws-core:2.25.11'
+    implementation 'software.amazon.awssdk:sdk-core:2.25.11'
+    implementation 'software.amazon.awssdk:regions:2.25.11'
+    implementation 'software.amazon.awssdk:auth:2.25.11'
 
 }
 
